@@ -532,6 +532,23 @@ function init_column_categories() {
 		return;
 	}
 
+	$('#aside_feed a.title, #aside_feed a.item-title').click(function(e) {
+		e.preventDefault();
+		var href = $(this).attr("href");
+		$("#stream").load(href + " #stream > *");
+		
+		var old_active = $("#aside_feed .tree-folder-items .item.active"),
+			new_active = $(this).parent();
+		var old_category = $("#aside_feed .tree-folder.active"),
+			new_category = $(this).closest("#aside_feed .tree-folder.category");
+		
+		old_active.removeClass("active current");
+		new_active.addClass("active current");
+		
+		old_category.removeClass("active current");
+		new_category.addClass("active current");
+	});
+
 	$('#aside_feed').on('click', '.tree-folder>.tree-folder-title>a.dropdown-toggle', function () {
 		$(this).children().each(function() {
 			if (this.alt === '▽') {
