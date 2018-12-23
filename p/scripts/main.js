@@ -540,13 +540,17 @@ function init_column_categories() {
 		var old_active = $("#aside_feed .tree-folder-items .item.active"),
 			new_active = $(this).parent();
 		var old_category = $("#aside_feed .tree-folder.active"),
-			new_category = $(this).closest("#aside_feed .tree-folder.category");
+			new_category = $(this).closest("#aside_feed .tree-folder.category"),
+			new_category_items = $(this).closest("#aside_feed .tree-folder-items");
 		
-		old_active.removeClass("active current");
-		new_active.addClass("active current");
+		old_active.removeClass("active");
+		new_active.addClass("active");
+		new_category_items.removeClass("active");
 		
-		old_category.removeClass("active current");
-		new_category.addClass("active current");
+		old_category.removeClass("active");
+		new_category.addClass("active");
+		new_category_items.addClass("active");
+		refreshUnreads();
 	});
 
 	$('#aside_feed').on('click', '.tree-folder>.tree-folder-title>a.dropdown-toggle', function () {
